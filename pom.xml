@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.n52.sensorweb.sos</groupId>
     <artifactId>52n-sos</artifactId>
-    <version>4.3.4</version>
+    <version>4.3.6</version>
     <name>52°North Sensor Observation Service</name>
     <description>52°North Sensor Observation Service - Parent POM for defining dependency versions</description>
     <url>https://wiki.52north.org/bin/view/SensorWeb/SensorObservationServiceIVDocumentation</url>
@@ -1462,10 +1462,15 @@
             </snapshots>
         </repository>
         <repository>
+			<id>boundlessgeo</id>
+			<name>Boundless Cloud Repository</name>
+			<url>https://boundless.artifactoryonline.com/boundless/main</url>
+		</repository>
+        <!-- <repository>
 			<id>boundless</id>
 			<name>Boundless, formerly OpenGeo</name>
 			<url>http://repo.boundlessgeo.com/main/</url>
-		</repository>
+		</repository> -->
     </repositories>
     <profiles>
         <profile>
