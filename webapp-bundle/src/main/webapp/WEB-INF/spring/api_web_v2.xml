@@ -72,7 +72,7 @@
         <property name="serviceParameterService" ref="serviceParameterServiceV2" />
         <property name="seriesMetadataService" ref="seriesServiceV2" />
         <property name="seriesDataService" ref="seriesServiceV2" />
-        <property name="preRenderingTask" ref="preRenderingJobV2" />
+        <!--<property name="preRenderingTask" ref="preRenderingJobV2" />-->
         <property name="requestIntervalRestriction" value="P1Y1D" />
     </bean>
 

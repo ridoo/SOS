@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:ctx="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
     
-	<mvc:annotation-driven />
+    <mvc:annotation-driven />
     <ctx:annotation-config />
 
     <bean id="jobScheduler" class="org.n52.io.task.JobScheduler" init-method="init" destroy-method="shutdown">
@@ -46,7 +46,7 @@
         <!--<property name="harvestingService" ref="testCkanHarvestingService" />-->
     </bean>
     
-<!--    <bean id="testCkanHarvestingService" class="org.n52.series.ckan.util.FileBasedCkanHarvester">
+    <!--    <bean id="testCkanHarvestingService" class="org.n52.series.ckan.util.FileBasedCkanHarvester">
         <constructor-arg index="0" value="dwd" />
         <property name="resourceDownloadBaseFolder" value="test-data" />
         <property name="metadataCache">
@@ -69,12 +69,7 @@
                 <constructor-arg index="0" value="https://ckan.colabis.de" />
             </bean>
         </property>
-        <property name="metadataCache">
-            <bean id="serializingCache" class="org.n52.series.ckan.sos.SerializingCkanCache" 
-                init-method="init" destroy-method="shutdown">
-                <property name="metadataCacheFile" value="cache/ckan-sos_cache" />
-            </bean>
-        </property>
+        <property name="metadataCache" ref="serializingCache" />
         <property name="dataCache">
             <bean class="org.n52.series.ckan.sos.SosDatabaseCache">
                 <property name="ckanSosReferenceCache" ref="serializingCache" />
@@ -92,5 +87,8 @@
             </bean>
         </property>
     </bean>
-    
+    <bean id="serializingCache" class="org.n52.series.ckan.sos.SerializingCkanCache" 
+          init-method="init" destroy-method="shutdown">
+        <property name="metadataCacheFile" value="cache/ckan-sos_cache" />
+    </bean>
 </beans>
