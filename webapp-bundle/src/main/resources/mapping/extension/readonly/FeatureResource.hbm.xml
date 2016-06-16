@@ -10,11 +10,8 @@
         <property name="name" column="name" type="string" />
         <property name="description" column="name" type="string" insert="false" update="false"/>
         <component class="org.n52.series.db.da.beans.ext.GeometryEntity" name="geometry">
-            <!--
             <property column="lat" name="lat" type="double" />
             <property column="lon" name="lon" type="double" />
-             -->
-            <property column="geom" name="geometry" type="org.hibernate.spatial.GeometryType"/>
         </component>
     </class>
 </hibernate-mapping>

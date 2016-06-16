@@ -3,14 +3,11 @@
 <hibernate-mapping package="org.n52.series.db.da.beans.ext">
     <class name="org.n52.series.db.da.beans.ext.SamplingGeometryEntity" table="observation">
         <id name="timestamp" type="timestamp">
-            <column name="phenomenonTimeStart"/>
+            <column name="phenomenontime"/>
             <generator class="assigned"/>
         </id>
-        <!--
         <property column="lat" name="lat" type="double" />
         <property column="lon" name="lon" type="double" />
-         -->
-        <property column="samplingGeometry" name="geometry" type="org.hibernate.spatial.GeometryType"/>
         <property column="seriesid" name="seriesPkid" type="long"/>
     </class>
 </hibernate-mapping>

@@ -42,13 +42,6 @@
                     unique-key="seriesIdentity" >
             </column>
         </many-to-one>
-        <many-to-one name="offering" 
-				        class="org.n52.sos.ds.hibernate.entities.Offering" 
-				        fetch="select" 
-				        lazy="no-proxy" 
-				        foreign-key="seriesOfferingFk">
-            <formula>null</formula>
-        </many-to-one>
         <property name="deleted"
                   type="org.hibernate.type.TrueFalseType">
             <formula>'F'</formula>

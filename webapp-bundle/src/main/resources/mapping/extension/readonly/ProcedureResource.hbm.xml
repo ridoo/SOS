@@ -12,8 +12,8 @@
         <property name="description" column="name" type="string" insert="false" update="false" />
         <property name="reference" formula="'F'" type="org.hibernate.type.TrueFalseType" />
 
-        <property column="mobile" name="mobile" type="org.hibernate.type.TrueFalseType" />
-        <property column="insitu" name="insitu" type="org.hibernate.type.TrueFalseType" />
+        <property formula="'T'" name="mobile" type="org.hibernate.type.TrueFalseType" />
+        <property formula="'T'" name="insitu" type="org.hibernate.type.TrueFalseType" />
 
     </class>
 </hibernate-mapping>
