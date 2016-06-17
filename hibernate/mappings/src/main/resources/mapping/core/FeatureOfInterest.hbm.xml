@@ -61,7 +61,7 @@
             </column>
         </property> 
         -->
-        <set name="childs" subselect="(SELECT null::bigint as parentFeatureId, null::bigint as childFeatureId FROM dual)" >
+        <set name="childs" subselect="(SELECT nullt as parentFeatureId, nullt as childFeatureId FROM dual)" >
         <!-- <set name="childs" table="featureRelation" inverse="false"> -->
             <comment>Relation table to store feature hierarchies. E.g. define a parent in a query and all childs are also contained in the response. Mapping file: mapping/transactional/TFeatureOfInterest.hbm.xml</comment>
             <key>
@@ -75,7 +75,7 @@
                 </column>
             </many-to-many>
         </set>
-        <set name="parents" subselect="(SELECT null::bigint as childFeatureId, null::bigint as parentFeatureId FROM dual)" >
+        <set name="parents" subselect="(SELECT nullt as childFeatureId, nullt as parentFeatureId FROM dual)" >
         <!-- <set name="parents" table="featureRelation" inverse="false"> -->
             <key>
                 <column name="childFeatureId" not-null="true" />
