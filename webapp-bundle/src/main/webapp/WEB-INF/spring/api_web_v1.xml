@@ -66,7 +66,7 @@
                 <bean class="org.n52.io.extension.v1.StatusIntervalsExtension" />
                 <!-- Using DatabaseMetadataExtension requires some preparation work. -->
                 <!-- Have a look at the README.md at TBD -->
-                <!--<bean class="org.n52.io.extension.DatabaseMetadataExtension" />-->
+                <!-- <bean class="org.n52.io.extension.DatabaseMetadataExtension" /> -->
             </list>
         </property>
     </bean>
@@ -79,7 +79,16 @@
         <property name="requestIntervalRestriction" value="P1Y1D" />
     </bean>
 
-    <bean class="org.n52.web.ctrl.v1.SearchController">
+    <bean id="preRenderingTask" class="org.n52.io.PreRenderingTask"
+          destroy-method="shutdownTask" factory-method="createTask">
+        <property name="timeseriesMetadataService" ref="timeseriesService" />
+        <property name="timeseriesDataService" ref="timeseriesService" />
+        <property name="outputPath" value="generated/prerendered" />
+        <property name="periodInMinutes" value="1440" />
+        <property name="enabled" value="false" />
+    </bean>
+
+    <bean class="org.n52.web.v1.ctrl.SearchController">
         <property name="searchService" ref="searchService"/>
     </bean>
 
