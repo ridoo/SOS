@@ -56,13 +56,13 @@
         </property>
         <!-- values for timeseries api -->
         <property name="firstTimeStamp"
-                  type="timestamp">
+                  type="iso_string">
             <column name="firstTimeStamp"
                     length="29" >
             </column>
         </property>
         <property name="lastTimeStamp"
-                  type="timestamp">
+                  type="iso_string">
             <column name="lastTimeStamp"
                     length="29" >
             </column>
