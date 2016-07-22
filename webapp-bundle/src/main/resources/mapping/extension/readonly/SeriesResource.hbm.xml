@@ -19,19 +19,23 @@
         <subclass name="MeasurementDatasetEntity" discriminator-value="measurement">
             <property name="numberOfDecimals" type="int" formula="3" />
             <many-to-one class="UnitEntity" column="seriesid" name="unit" insert="false" update="false" />
-            <component class="MeasurementDataEntity" name="firstValue">
-                <property column="firsttimestamp" name="timestamp" type="iso_string"/>
-                <property column="firstvalue" name="value" type="double"/>
-            </component>
-            <component class="MeasurementDataEntity" name="lastValue">
-                <property column="lasttimestamp" name="timestamp" type="iso_string"/>
-                <property column="lastvalue" name="value" type="double"/>
-            </component>
-            <list fetch="select" inverse="true" name="observations" table="observation">
+            
+            <property name="firstValueAt" column="firsttimestamp" type="timestamp"/>
+            <property name="lastValueAt" column="lasttimestamp" type="timestamp"/>
+            
+<!--             <component class="MeasurementDataEntity" name="firstValue"> -->
+<!--                 <property column="firsttimestamp" name="timestamp" type="timestamp"/> -->
+<!--                 <property column="firstvalue" name="value" type="double"/> -->
+<!--             </component> -->
+<!--             <component class="MeasurementDataEntity" name="lastValue"> -->
+<!--                 <property column="lasttimestamp" name="timestamp" type="timestamp"/> -->
+<!--                 <property column="lastvalue" name="value" type="double"/> -->
+<!--             </component> -->
+            <bag fetch="select" inverse="true" name="observations" table="observation" order-by="phenomenontime">
                 <key column="seriesid"/>
-                <index column="phenomenontime"/>
+<!--                 <index column="phenomenontime"/> -->
                 <one-to-many class="MeasurementDataEntity"/>
-            </list>
+            </bag>
         </subclass>
     </class>
 </hibernate-mapping>
