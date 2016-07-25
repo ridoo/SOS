@@ -112,7 +112,7 @@
             	<comment>The latitude of the samplingGeometry. Optional</comment>
             </column>
         </property>
-        <!-- <set name="parameters" subselect="(SELECT null::bigint as observationId null::bigint as parameterId" >
+        <!-- <set name="parameters" subselect="(SELECT CAST (null as NUMBER(19)) as observationId CAST (null as NUMBER(19)) as parameterId) FROM dual" >
         <set name="parameters" table="parameters" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="observationId" not-null="true" />
