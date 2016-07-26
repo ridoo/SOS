@@ -35,6 +35,7 @@ import org.n52.sos.config.SettingDefinition;
 import org.n52.sos.config.SettingDefinitionGroup;
 import org.n52.sos.config.SettingDefinitionProvider;
 import org.n52.sos.config.settings.BooleanSettingDefinition;
+import org.n52.sos.config.settings.FileSettingDefinition;
 import org.n52.sos.config.settings.StringSettingDefinition;
 import org.n52.sos.config.settings.UriSettingDefinition;
 
@@ -63,6 +64,10 @@ public class ServiceSettings implements SettingDefinitionProvider {
     public static final String EXPOSE_CHILD_OBSERVABLE_PROPERTIES = "service.exposeChildObservableProperties";
     
     public static final String UPDATE_FEATURE_GEOMETRY = "service.updateFeatureGeometry";
+    
+    public static final String CACHE_FILE_FOLDER = "service.cacheFileFolder";
+    
+    public static final String CREATE_FOI_GEOM_FROM_SAMPLING_GEOMS = "service.createFeatureGeometryFromSamplingGeometries";
 
     public static final SettingDefinitionGroup GROUP = new SettingDefinitionGroup().setTitle("Service").setOrder(2);
 
@@ -140,7 +145,26 @@ public class ServiceSettings implements SettingDefinitionProvider {
                      .setTitle("Should this SOS expand the featureOfInterest geometry with the samplingGeometry?")
                      .setDescription(
                              "Whether the SOS should expand the featureOfInterest geometry with the samplingGeometry from the inserted observation.");
+     
+     public static final FileSettingDefinition CACHE_FILE_FOLDER_DEFILINION = new FileSettingDefinition()
+             .setGroup(GROUP)
+             .setOrder(ORDER_19)
+             .setKey(CACHE_FILE_FOLDER)
+             .setTitle("Cache file folder")
+             .setOptional(true)
+             .setDescription(
+                     "The path to a folder where the cache file should be stored. The default is the webapp folder. If you define a path, then grant the necessary rights to write to the tomcat user!!!");
 
+     public static final BooleanSettingDefinition CREATE_FOI_GEOM_FROM_SAMPLING_GEOMS_DEFINITION =
+             new BooleanSettingDefinition()
+                     .setGroup(GROUP)
+                     .setOrder(ORDER_20)
+                     .setKey(CREATE_FOI_GEOM_FROM_SAMPLING_GEOMS)
+                     .setDefaultValue(false)
+                     .setTitle("Should this SOS create the featureOfInterest geometry from samplingGeometries?")
+                     .setDescription(
+                             "Whether the SOS should create the featureOfInterest geometry from samplingGeometries.");
+     
     private static final Set<SettingDefinition<?, ?>> DEFINITIONS = Sets.<SettingDefinition<?, ?>> newHashSet(
             SERVICE_URL_DEFINITION,
             SENSOR_DIRECTORY_DEFINITION,
@@ -148,7 +172,9 @@ public class ServiceSettings implements SettingDefinitionProvider {
             STRICT_SPATIAL_FILTERING_PROFILE_DEFINITION,
             VALIDATE_RESPONSE_DEFINITION,
             EXPOSE_CHILD_OBSERVABLE_PROPERTIES_DEFINITION,
-            UPDATE_FEATURE_GEOMETRY_DEFINITION);
+            UPDATE_FEATURE_GEOMETRY_DEFINITION,
+            CACHE_FILE_FOLDER_DEFILINION,
+            CREATE_FOI_GEOM_FROM_SAMPLING_GEOMS_DEFINITION);
 
     @Override
     public Set<SettingDefinition<?, ?>> getSettingDefinitions() {
