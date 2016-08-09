@@ -1,3 +1,6 @@
+/webapp-bundle/cache/ckan-sos_cache
+/webapp-bundle/src/main/webapp/cache.tmp
+/webapp-bundle/src/main/webapp/configuration.db
 target
 .classpath
 .externalToolBuilders
