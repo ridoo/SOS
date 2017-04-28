@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.n52.series.db.beans">
+  <class name="DatasetEntity" table="series">
+    <id name="pkid" type="long">
+      <column name="seriesid"/>
+      <generator class="assigned"/>
+    </id>
+    <discriminator formula="'quantity'" type="string"/>
+    <many-to-one class="CategoryEntity" column="observablepropertyid" insert="false" name="category" update="false"/>
+    <many-to-one class="ProcedureEntity" column="procedureid" insert="false" name="procedure" update="false"/>
+    <many-to-one class="OfferingEntity" column="procedureid" insert="false" name="offering" update="false"/>
+    <many-to-one class="PhenomenonEntity" column="observablepropertyid" insert="false" name="phenomenon" update="false"/>
+    <many-to-one class="FeatureEntity" column="featureofinterestid" insert="false" name="feature" update="false"/>
+    <many-to-one class="PlatformEntity" column="procedureid" insert="false" name="platform" update="false"/>
+    <property formula="'T'" insert="false" name="published" type="org.hibernate.type.TrueFalseType" update="false"/>
+    <property formula="'F'" insert="false" name="deleted" type="org.hibernate.type.TrueFalseType" update="false"/>
+    <property formula="'quantity'" insert="false" name="valueType" type="string" update="false"/>
+
+    <property column="firsttimestamp" name="firstValueAt" type="timestamp"/>
+    <property column="lasttimestamp" name="lastValueAt" type="timestamp"/>
+
+    <subclass discriminator-value="quantity" name="QuantityDatasetEntity">
+      <property formula="3" name="numberOfDecimals" type="int"/>
+      <!-- first value for backwards compatibility -->
+      <component class="ObservationEntity" name="firstValue">
+      	<property column="firsttimestamp" name="timestart" type="timestamp" insert="false" update="false"/>
+        <property column="firsttimestamp" name="timeend" type="timestamp" insert="false" update="false"/>
+        <property column="firstvalue" name="value" type="double"/>
+      </component>
+      <!-- last value for backwards compatibility -->
+      <component class="ObservationEntity" name="lastValue">
+      	<property column="lasttimestamp" name="timestart" type="timestamp" insert="false" update="false"/>
+        <property column="lasttimestamp" name="timeend" type="timestamp" insert="false" update="false"/>
+        <property column="lastvalue" name="value" type="double"/>
+      </component>
+      <many-to-one class="UnitEntity" column="seriesid" name="unit" insert="false" update="false" />
+      <list fetch="select" inverse="true" name="observations" table="observation">
+        <key column="observationid"/>
+        <index column="seriesid"/>
+        <one-to-many class="DataEntity"/>
+      </list>
+    </subclass>
+  </class>
+</hibernate-mapping>
